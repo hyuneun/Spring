@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+		
+	<!-- aspect(advice) -->
+	<bean id="loggingAspect" class="pack.aop1.LoggingAspect">
+		<property name="myaspect" ref="myAspect" />
+	</bean>
+	
+	<bean class="pack.aop1.MyAspect" id="myAspect"/>
+	
+	<!-- aop설정 -->
+	<aop:config>								<!-- public void wri 로시작하고 인자1이상 -->
+		<aop:pointcut expression="execution(public void wri*(..))" id="pointcut" />
+		<aop:aspect ref="loggingAspect">
+			<aop:around method="logging" pointcut-ref="pointcut"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<aop:config>								<!-- public void wri 로시작하고 인자1이상 -->
+		<aop:pointcut expression="execution(public void hel*(..)) || execution(* *..*HelloInter*.*(..))" id="pointcut2" />
+		<aop:aspect ref="loggingAspect">
+			<aop:around method="logging2" pointcut-ref="pointcut2"/>
+		</aop:aspect>
+	</aop:config>
+
+</beans>

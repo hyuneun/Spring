@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	<!-- <bean id="senderProcess" class="ano2_auto.senderProcess">
+		<property name="sender" >
+			주석<ref bean="sender" />주석
+			<bean class="ano2_auto.sender" />
+		</property>
+	</bean> -->
+	<!-- <bean class="ano2_auto.sender" id="sender"></bean> -->
+	
+	
+	
+	<!-- @autowired 어노테이션 사용시 -->
+	
+	<!-- <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor" /> -->
+	<context:annotation-config/>
+	
+	<!-- <bean id="senderProcess" class="ano2_auto.senderProcess" />
+	<bean id="senders" class="ano2_auto.sender"/>
+	<bean id="senders2" class="ano2_auto.sender"/> -->
+	<!--같은객체에대한 객체변수가 두개이상일경우 인터페이스가 못찾기때문에  @Qualifier 써서 어떤건지 지정해야한다-->
+	
+	<context:component-scan base-package="ano2_auto"/>
+</beans>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<a href="hello3.do">요청1</a>
+<a href="hello1.do">요청2</a><br>
+
+<a href="hello2.do">요청3</a>
+<a href="good.do">요청4</a>
+
+<form action="hello.do" method="post">
+	<input type="submit" value="post요청">
+</form>
+
+
+<a href="javascript:func();">앵커로 post 방식 구현</a>
+<form name="f"></form>
+<script>
+function func(){
+         f.action="hello3.do"; 
+         f.method="post";  //POST방식
+         f.submit();
+}
+</script>
+</body>
+</html>

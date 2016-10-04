@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+	<!-- <bean id="processImpl" class="spr4_di_setter.ProcessImpl">
+		<property name="age" value="23"/>
+		<property name="name" value="쀼삐뿌뽀뾰"/>
+		<property name="showInter" ref="showData"/>
+	<bean id="showData" class="spr4_di_setter.ShowData" />
+	</bean> -->
+	
+	<!-- <bean id="processImpl" class="spr4_di_setter.ProcessImpl">
+		<property name="age">
+			<value>25</value>
+		</property>
+		
+		<property name="name">
+			<value>길동</value>
+		</property>
+		
+		<property name="showInter">
+				<bean class="spr4_di_setter.ShowData" />
+		</property>
+	</bean> -->
+	
+	<!--namespace p 사용  -->
+	<bean id="processImpl" class="spr4_di_setter.ProcessImpl" p:age="26" p:name="홍길떵" p:showInter-ref="showData"/>
+	<bean id="showData" class="spr4_di_setter.ShowData" />
+</beans>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<!-- HandlerMapping 설정(만들어두기만하면됨) -->
+	<!-- BeanNameUrlHandlerMapping : client의 요청URL과 동일한 이름의 빈을 컨트롤러로 사용하도록 매핑 -->
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+	
+	<!-- controller 설정 -->
+	<bean name="/index.do" class="pack.TestController" />
+
+
+	
+	<!-- viewResolver 설정(포워딩이 기본) -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp"/>
+	</bean>
+	
+
+</beans>

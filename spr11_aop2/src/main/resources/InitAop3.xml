@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	<context:component-scan base-package="pack.aop3"/><!--서비스 컴포넌트 리포짓 등등이 걸림  -->
+	<aop:aspectj-autoproxy />
+	
+	<!-- 
+	
+	<context:component-scan>
+	스프링은 클래스 패스에 위치한 클래스를 검색하여 특정한 어노테이션이 붙은 클래스를 자동으로
+     빈으로 등록하는 기능을 제공
+   	xml파일에 빈정보를 추가하지 않고도 특정한 클래스들의 빈을 등록할 수 있음
+	
+	@Controller - Presentation Layer에서 Controller를 명시하기 위해서 사용
+	@Service - Business Layser에서 Service를 명시하기 위해서 사용
+	@Repository - Persistence Layer에서 DAO(데이터연결작업클래스)를 명시하기 위해서 사용
+	@Component - 그 외에 자동으로 스캔해서 등록하고 싶은 것들을 위해 사용
+
+
+	 -->
+</beans>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+	<!-- 핵심객체 -->
+	<bean class="transaction_spring.FooInterImpl" id="fooInter"/>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="org.mariadb.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/test" />
+		<property name="username" value="root" />
+		<property name="password" value="123" />
+	</bean>
+	
+	<!-- DataSourceTransactionManager : 데이타 소스를 프로퍼티로 전달받아 conn을 가져온뒤 커밋,롤백 등을 사용해 트렌잭션관리
+	트랜잭션의 경계를 결정함(트랜젝션생성) -->
+	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager" id="tx">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 트렌젝션 적용  -->
+	<tx:advice id="txadvice" transaction-manager="tx">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/><!-- 읽기전용 -->
+			<tx:method name="*" propagation="REQUIRED"/><!-- 트랜젝션 잇으면쓰고 없으면 만듬 -->
+		</tx:attributes>
+	</tx:advice>
+	
+	<!-- 트렌젝션 aop설정 -->
+	<aop:config>
+		<aop:pointcut expression="execution(* transaction_spring.FooInter*.*(..))" id="pt"/>
+		<aop:advisor advice-ref="txadvice" pointcut-ref="pt"/>
+	</aop:config>
+	
+</beans>

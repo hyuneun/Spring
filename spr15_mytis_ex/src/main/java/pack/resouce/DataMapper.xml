@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro">
+ <select id="selectDataSawon" resultType="pack.model.SawonDto">
+  select sawon_no,sawon_name,sawon_pay,case when buser_num='10' then '총무부' when buser_num='20' then '영업부' when buser_num='30' then '전산부' when buser_num='40' then '관리부' end buser_num,date_format(sawon_ibsail,'%Y') sawon_ibsail from sawon;
+ </select>
+ 
+  <select id="selectDataBuser" resultType="pack.model.BuserDto">
+ select buser_name,count(*) buser_count from buser left join sawon on buser_num = buser_no group by buser_name;
+ </select>
+ 
+  <select id="selectDataPay" resultType="pack.model.BuserDto">
+ select sawon_name, ifnull(buser_name, "무소속")as buser_name, sawon_pay from sawon a, 
+		(select buser_num, max(sawon_pay) maxpay from sawon group by buser_num) b left join buser on buser_num=buser_no
+		where a.buser_num = b.buser_num and a.sawon_pay = b.maxpay
+		order by a.buser_num;
+	</select>
+ 
+</mapper>
