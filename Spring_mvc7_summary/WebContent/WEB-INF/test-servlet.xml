@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+	<!-- handlerMapping -->
+	<!-- 
+	방법1 : 요청 url과 동일한 이름을 가진 빈과 매핑(기본)
+	<bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" />
+	 
+	<bean id="/hello.do" name="/abc/world.do,/hi.do" class="pack.controller.HelloController">
+		<property name="hellomodel" ref="helloModel" />
+	</bean>
+	
+	<bean id="helloModel" class="pack.model.HelloModel" />
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	-->
+	
+	<!-- 방법2 : 경로매핑방식 (패턴사용 : *,?) -->
+	<bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="alwaysUseFullPath" value="true" />
+		<property name="mappings">
+			<props>		<!-- 경로상관x -->
+				<prop key="/**/*.do">hi</prop><!-- 파일명 상관없이 do로 들어오면 hi로 매핑됨 -->
+				<!-- /**/?????.do 5자만 허용 -->
+			</props>
+		</property>
+	</bean>
+	
+	<bean name="hi" class="pack.controller.HelloController">
+		<property name="hellomodel" ref="helloModel" />
+	</bean>
+	
+	<bean id="helloModel" class="pack.model.HelloModel" />
+
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	
+	
+</beans>
