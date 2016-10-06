@@ -1,0 +1,6 @@
+/**
+ * 
+ */
+function aa() {
+	alert("asd")
+}
