@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro">
+ <select id="selectDataAll" resultType="dto">
+  select sawon_no,sawon_name,buser_name,sawon_jik,date_format(sawon_ibsail,'%m') sawon_m, date_format(sawon_ibsail,'%Y') sawon_y from sawon left join buser on buser_num=buser_no
+ </select>
+ 
+ <select id="selectDataSearch" resultType="dto" parameterType="String">
+  select sawon_no,sawon_name,buser_name,sawon_jik,date_format(sawon_ibsail,'%m') sawon_m, date_format(sawon_ibsail,'%Y') sawon_y from sawon left join buser on buser_num=buser_no where buser_name=#{searchValue}
+ </select>
+ 
+<!--   <select id="selectDataAll2" resultType="dto2">
+  select buser_no,buser_name,buser_tel,buser_loc from buser
+ </select> -->
+ 
+ <select id="selectDataSearch2" resultType="dto2" parameterType="String">
+  select buser_no,buser_name,buser_tel,buser_loc from buser where buser_name=#{searchValue}
+ </select>
+ 
+ 
+ 
+ 
+</mapper>
