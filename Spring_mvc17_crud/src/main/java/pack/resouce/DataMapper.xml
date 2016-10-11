@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pro">
+
+	<select id="selectDataAll" resultType="dto">
+		select * from mem
+	</select>
+
+	<select id="selectDataPart" resultType="dto" parameterType="String">
+		select * from mem where num=#{num}
+	</select>
+
+	<insert id="insertData" parameterType="dto2">
+		insert into mem values(#{num},#{name},#{addr})
+	</insert>
+
+	<update id="updateData" parameterType="dto2">
+		update mem set name=#{name},addr=#{addr} where num=#{num}
+	</update>
+	
+	<delete id="deleteData" parameterType="String">
+		delete from mem where num=#{num}
+	</delete>
+
+</mapper>
