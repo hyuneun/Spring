@@ -11,8 +11,6 @@ public interface SangpumAnoInter {
 	@Select("select * from sangdata")
 	public List<ProductDto> selectDataAll();
 		
-	
-	
 	@Select("select * from sangdata where sang like concat('%',#{searchValue},'%')")
 	public List<ProductDto> selectSearch(SangpumBean bean);
 		

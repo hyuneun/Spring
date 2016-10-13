@@ -10,15 +10,12 @@ import org.springframework.stereotype.Repository;
 import pack.controller.MemBean;
 
 @Repository
-public class MemDaoImpl extends SqlSessionDaoSupport implements MemDaoInter{
+public class MemDaoImpl implements MemDaoInter{
 	
 	@Autowired
 	private SangpumAnoInter inter;
 	
-	@Autowired
-	public MemDaoImpl(SqlSessionFactory factory) {
-		setSqlSessionFactory(factory);
-	}
+	
 	
 	public List<MemDto> getdataAll() {
 		return inter.selectDataAll();
