@@ -33,7 +33,7 @@
 		<property name="pointcut">
 			<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut">
 				<property name="pattern">
-					<value>.*sayHello*.</value><!-- sayHello가 포함되있으면 pointcut 이됨 -->
+					<value>.*listProcess*.</value><!-- sayHello가 포함되있으면 pointcut 이됨 -->
 				</property>
 			</bean>
 		</property>

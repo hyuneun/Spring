@@ -12,7 +12,7 @@ public class Main1 {
 		WriteInter writeInter = (WriteInter)context.getBean("writeInterImpl");
 		writeInter.write();
 		
-		System.out.println();
+		System.out.println("aaaaaaaaaaaa");
 		
 		HelloInter helloInter = (HelloInter)context.getBean("helloInterImpl");
 		helloInter.hello();

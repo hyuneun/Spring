@@ -13,7 +13,7 @@ public class LoggingAdvice implements MethodInterceptor{ //aspect class(aop에�
 		//target 메소드 얻기
 		String methodName = invocation.getMethod().getName();
 		System.out.println("호출될 비즈니스 로직의 메소드 이름 : " + methodName);
-		
+		System.out.println("asdasdasd");
 		Object object = invocation.proceed();//핵심로직이 수행
 		
 		//핵심로직 수행후
