@@ -1,5 +1,6 @@
 package pack.controller;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,11 +24,14 @@ public class ListController {
    
    @RequestMapping("index")
    @ResponseBody
-   public Map<String, Object> listProcess(@RequestParam("buser_name") String buser_name){
+   public Map<String, Object> listProcess(@RequestParam("buser_name") String buser_name) throws SQLException{
       List<Map<String,String>> list = new ArrayList<Map<String,String>>();
       Map<String, String> data = null;
       List<SangpumDto> sangList = dataDao.getDataAll(buser_name);
-      
+      /*List<SangpumDto> sangList2 = dataDao.getDataAll3("홍길동", "1");
+      for(SangpumDto s : sangList){
+    	  System.out.println(s.getSawon_no());
+      }*/
       for(SangpumDto s : sangList){
     	  data = new HashMap<String, String>();
     	  data.put("sawon_no", s.getSawon_no());

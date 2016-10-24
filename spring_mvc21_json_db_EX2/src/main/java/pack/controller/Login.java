@@ -20,9 +20,9 @@ import pack.model.SangpumDto;
 
 @Component
 @Aspect
-public class Login extends JdbcDaoSupport{
+public class Login{
 	
-	@Around("execution(public Map<String, Object> listProcess(..))")
+	@Around("execution(public * listProcess(..))")
 	public Object trace(ProceedingJoinPoint joinPoint) throws Throwable{
 		
 		System.out.println("이름");
@@ -33,7 +33,7 @@ public class Login extends JdbcDaoSupport{
 		//scanner.close();
 		DataDao dao = new DataDao();
 		for (SangpumDto s : dao.getDataAll3(id,password)) {
-	          
+	         
 	         if(password.equals(s.getSawon_no())){
 	            Object object = joinPoint.proceed();
 	            return object;

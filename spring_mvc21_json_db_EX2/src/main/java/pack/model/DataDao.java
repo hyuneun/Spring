@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.stereotype.Repository;
+import org.springframework.validation.ObjectError;
 
 @Repository
 public class DataDao extends JdbcDaoSupport{
@@ -75,8 +76,8 @@ public class DataDao extends JdbcDaoSupport{
 		   
 		   //-----------------------------------
 		   
-		   public List<SangpumDto> getDataAll3(String sawon_name,String sawon_no){
-			      String sql = "select sawon_name from sawon where sawon_name='"+sawon_name+"' and sawon_no='"+ sawon_no +"'";                         
+		   public List<SangpumDto> getDataAll3(String sawon_name,String sawon_no) throws SQLException {
+			      String sql = "select sawon_name,sawon_no from sawon where sawon_name='"+sawon_name+"' and sawon_no='"+ sawon_no +"'";                         
 			      System.out.println(sql);
 			      return getJdbcTemplate().query(sql, new ItemRowMapper3());
 			   }
@@ -85,8 +86,10 @@ public class DataDao extends JdbcDaoSupport{
 			   class ItemRowMapper3 implements RowMapper{
 			      
 			      public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
+			    	  System.out.println("ads");
 			         SangpumDto dto = new SangpumDto();
-			         dto.setSawon_no(rs.getString(1));
+			         System.out.println("asd");
+			         dto.setSawon_no(rs.getString("sawon_no"));
 			         return dto;
 			      }
 			   }
